@@ -48,7 +48,19 @@
         <img src="/api/placeholder/100/100" alt="Logo" class="logo">
         <h1>Hello World!</h1>
         <p>This is my first Cloudflare Pages deployment.</p>
-        <p>Built with ❤️ and deployed on Cloudflare Pages</p>
+        <p id="built-with">Loading...</p>
     </div>
+    <script>
+        // Fetch the value from our API
+        fetch('/api/get-built-with')
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('built-with').textContent = text;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('built-with').textContent = 'Error loading message';
+            });
+    </script>
 </body>
 </html>
